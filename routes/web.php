@@ -18,8 +18,9 @@ Route::get('/header', function (){
 Route::get('/contain', function (){
   return view('backend/menu');
 });
-Route::get('/siswa', 'PageSekolah@datasiswa')->name('siswa');
+// Route::get('/siswa', 'PageSekolah@datasiswa')->name('siswa');
 Route::get('/absensi', 'PageSekolah@absensi')->name('absensi');
 Route::get('/mapel', 'PageSekolah@mapel')->name('mapel');
 Route::get('/kelas', 'PageSekolah@kelas')->name('kelas');
 Route::get('/piket', 'PageSekolah@piket')->name('piket');
+Route::resource('siswa', 'DataSiswaController');

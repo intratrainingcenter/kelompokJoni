@@ -18,6 +18,7 @@ class CreateDatasiswasTable extends Migration
             $table->string('nis');
             $table->string('kode_kelas');
             $table->string('nama');
+            $table->enum('jenis_kelamin',['laki-laki','perempuan','unknown'])->default('unknown');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->text('Alamat');
