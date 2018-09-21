@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\datasiswa;
 
 class DataSiswaController extends Controller
 {
@@ -16,7 +17,7 @@ class DataSiswaController extends Controller
     {
         $data = DB::table('datasiswas')->get();
         // dd($data);
-        return view('page/datasiswa/siswa');
+        return view('page/datasiswa/siswa',['data'=>$data]);
     }
 
     /**
@@ -37,7 +38,19 @@ class DataSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $code = date("Ymdhis");
+        $count = datasiswa::count()+1;
+
+        // dd('n'.$code.$count);
+        $insert = new datasiswa;
+        $insert->nis='N'.$code.$count;
+        $insert->nama=$request->nama;
+        $insert->jenis_kelamin=$request->jenis_kelamin;
+        $insert->no_hp=$request->no_hp;
+        $insert->alamat=$request->alamat;
+        $insert->save();
+
+        return redirect('siswa')->with(['success' => 'Proses penambahan Berhasil']);
     }
 
     /**
@@ -69,9 +82,19 @@ class DataSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nis)
     {
-        //
+        // dd($request['nis']);
+        // $update = datasiswa::where('nis',"=",$request['nis']);
+        $updates = datasiswa::where('nis',$request['nis'])->first();
+        $updates->nis=$request->nis;
+        $updates->nama=$request->nama;
+        $updates->jenis_kelamin=$request->jenis_kelamin;
+        $updates->no_hp=$request->no_hp;
+        $updates->alamat=$request->alamat;
+        $updates->save();
+
+        return redirect('siswa')->with(['success' => 'Proses Edit Berhasil']);
     }
 
     /**
@@ -80,8 +103,12 @@ class DataSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nis)
     {
+        // dd($nis);
+        $delete = datasiswa::where('nis',$nis);
+        $delete->delete();
         //
+        return redirect('siswa')->with(['success' => 'Proses Hapus Berhasil']);
     }
 }

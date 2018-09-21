@@ -24,3 +24,4 @@ Route::get('/mapel', 'PageSekolah@mapel')->name('mapel');
 Route::get('/kelas', 'PageSekolah@kelas')->name('kelas');
 Route::get('/piket', 'PageSekolah@piket')->name('piket');
 Route::resource('siswa', 'DataSiswaController');
+Route::resource('kelas', 'KelasController');
