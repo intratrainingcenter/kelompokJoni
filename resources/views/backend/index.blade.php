@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Kelompok 3 | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -98,5 +98,10 @@
 <script src="{{asset('AdminLTE-master/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('AdminLTE-master/dist/js/demo.js')}}"></script>
+<script type="text/javascript">
+  setTimeout(function(){
+     ('.notif').fadeOut('slow')
+       }, 3000);
+</script>
 </body>
 </html>

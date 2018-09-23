@@ -2,7 +2,7 @@
 @section('contain')
   <!-- Content Wrapper. Contains page content -->
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    {{-- <section class="content-header">
       <h1>
         Dashboard
         <small>Control panel</small>
@@ -515,6 +515,6 @@
       </div>
       <!-- /.row (main row) -->
 
-    </section>
+    </section> --}}
   <!-- /.content-wrapper -->
 @endsection
