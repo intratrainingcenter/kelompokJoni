@@ -22,9 +22,9 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Responsive Hover Table</h3>
+            <h3 class="box-title"></h3>
             <div class="box-tools">
-              <a class="btn btn-success" data-toggle="modal" data-target="#AddSiswa" style="float:right;" href="#">Add</a>
+              <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddSiswa" style="float:right;" href="#">Add</a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -49,8 +49,8 @@
                     <td>{{$key->no_hp}}</td>
                     <td>{{$key->alamat}}</td>
                     <td>
-                      <a type="button" class="btn btn-warning" data-toggle="modal" data-target="#Editsiswa{{$key->nis}}" href="#">edit</a>
-                      <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Hapussiswa{{$key->nis}}" href="#">delete</a>
+                      <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#Editsiswa{{$key->nis}}" href="#">edit</a>
+                      <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#Hapussiswa{{$key->nis}}" href="#">delete</a>
                     </td>
                   </tr>
                 @endforeach
@@ -85,7 +85,7 @@
           }}{{
             Form::label('nama', 'Nama', ['class' => 'awesome'])
           }}{{
-            Form::text('nama', '',['placeholder'=>'ahmad','class' => 'form-control','required'])
+            Form::text('nama', '',['placeholder'=>'ahmad','class' => 'form-control','required','autofocus'])
           }}{{
             Form::label('jenis_kelamin', 'Jenis kelamin', ['class' => 'awesome'])
           }}<br>{{
@@ -95,9 +95,9 @@
                 'perempuan' => 'perempuan',
             ], ['class' => 'form-control select2','required'])
           }}<br>{{
-            Form::label('no_hp', 'No Hp', ['placeholder'=> '0877xxxxx','class' => 'awesome'])
+            Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
-            Form::number('no_hp', '',['placeholder'=> 'Tempat lahir','class' => 'form-control','required'])
+            Form::number('no_hp', '',['placeholder'=> '0877xxxxx','min'=>'0','class' => 'form-control','required'])
           }}{{
             Form::label('alamat', 'Alamat', ['class' => 'awesome'])
           }}{{
@@ -105,8 +105,8 @@
           }}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" >submit</button>
+          <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" title="submit" >Submit</button>
         </div>
       </div>
     {{-- </form> --}}
@@ -144,9 +144,9 @@
               'perempuan' => 'perempuan',
             ], ['class' => 'form-control select2','required'])
           }}<br>{{
-            Form::label('no_hp', 'No Hp', ['placeholder'=> '0877xxxxx','class' => 'awesome'])
+            Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
-            Form::number('no_hp', "$Edit->no_hp",['placeholder'=> 'Tempat lahir','class' => 'form-control','required'])
+            Form::number('no_hp', "$Edit->no_hp",['min'=>'0','placeholder'=> '0877xxxxx','class' => 'form-control','required'])
           }}{{
             Form::label('alamat', 'Alamat', ['class' => 'awesome'])
           }}{{
@@ -154,8 +154,8 @@
           }}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" >Update</button>
+          <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" title="update" >Update</button>
         </div>
       </div>
       {!! Form::close() !!}
@@ -166,7 +166,7 @@
 @foreach ($data as $delete)
   <div id="Hapussiswa{{$delete->nis}}" class="modal fade" role="dialog">
     <div class="modal-dialog">
-      {!! Form::model($data, ['route' => ['siswa.destroy',$Edit->nis]]) !!}
+      {!! Form::model($data, ['route' => ['siswa.destroy',$delete->nis]]) !!}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -176,12 +176,12 @@
           @csrf
           @method('DELETE')
           <center><h3>Apakah Anda Yakin menghapus ???</h3></center>
-          <center><b><h2>{{$delete->nama}}</h2></b></center>
-        <hr>
+          <center><b><h2>" {{$delete->nama}} "</h2></b></center>
+        {{-- <hr> --}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" >Delete</button>
+          <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" title="delete" >Delete</button>
         </div>
       </div>
       {!! Form::close() !!}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\kelas;
 
 class KelasController extends Controller
 {
@@ -13,7 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        return view('page/kelas');
+        $data = kelas::orderBy('id','DESC')->get();
+        return view('page/kelas',['data'=>$data]);
     }
 
     /**
@@ -34,7 +36,18 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $code = date("Ymdhis");
+      $count = kelas::count()+1;
+
+      // dd('n'.$code.$count);
+      $insert = new kelas;
+      $insert->kode_kelas='K-'.$code.$count;
+      $insert->nama_kelas=$request->nama_kelas;
+      $insert->wali_kelas=$request->wali_kelas;
+      $insert->keterangan_kelas=$request->keterangan_kelas;
+      $insert->save();
+
+      return redirect('kelas')->with(['success' => 'Proses penambahan Berhasil']);
     }
 
     /**
@@ -66,9 +79,17 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode_kelas)
     {
-        //
+      // dd($request->kode_kelas);
+      $insert = kelas::where('kode_kelas',$request->kode_kelas)->first();
+      $insert->kode_kelas=$request->kode_kelas;
+      $insert->nama_kelas=$request->nama_kelas;
+      $insert->wali_kelas=$request->wali_kelas;
+      $insert->keterangan_kelas=$request->keterangan_kelas;
+      $insert->save();
+
+      return redirect('kelas')->with(['success' => 'Proses Edit Berhasil']);
     }
 
     /**
@@ -77,8 +98,12 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode_kelas)
     {
-        //
+        // dd($kode_kelas);
+        $delete = kelas::where('kode_kelas',$kode_kelas);
+        $delete->delete();
+
+        return redirect('kelas')->with(['success' => 'Proses Hapus Berhasil']);
     }
 }
