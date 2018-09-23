@@ -53,7 +53,7 @@
   @include('backend/footer')
 
   <!-- Control Sidebar -->
-  @include('backend/sidebar')
+  {{-- @include('backend/sidebar') --}}
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -100,7 +100,7 @@
 <script src="{{asset('AdminLTE-master/dist/js/demo.js')}}"></script>
 <script type="text/javascript">
   setTimeout(function(){
-     ('.notif').fadeOut('slow')
+     $('.notif').hide('slow')
        }, 3000);
 </script>
 </body>

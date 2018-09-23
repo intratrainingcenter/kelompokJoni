@@ -15,7 +15,7 @@ class DataSiswaController extends Controller
      */
     public function index()
     {
-        $data = DB::table('datasiswas')->get();
+        $data = datasiswa::orderBy('id','DESC')->get();
         // dd($data);
         return view('page/datasiswa/siswa',['data'=>$data]);
     }
