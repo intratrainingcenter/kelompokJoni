@@ -88,13 +88,11 @@
             Form::text('nama', '',['placeholder'=>'ahmad','class' => 'form-control','required','autofocus'])
           }}{{
             Form::label('jenis_kelamin', 'Jenis kelamin', ['class' => 'awesome'])
-          }}<br>{{
-            Form::select('jenis_kelamin', [
-                '' => '------unknown---',
-                'laki-laki' => 'laki-laki',
-                'perempuan' => 'perempuan',
-            ], ['class' => 'form-control select2','required'])
-          }}<br>{{
+          }}{{ Form::select('jenis_kelamin', [
+                          'laki-laki' => 'laki-laki',
+                          'perempuan' => 'perempuan'
+            ,], null, ['placeholder' => '---unknown---','class' => 'form-control select2','required']) }}
+          {{
             Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
             Form::number('no_hp', '',['placeholder'=> '0877xxxxx','min'=>'0','class' => 'form-control','required'])
@@ -137,13 +135,12 @@
             Form::text('nama', "$Edit->nama",['placeholder'=>'ahmad','class' => 'form-control','required'])
           }}{{
             Form::label('jenis_kelamin', 'Jenis kelamin', ['class' => 'awesome'])
-          }}<br>{{
-            Form::select('jenis_kelamin', [
-              "$Edit->jenis_kelamin" => "$Edit->jenis_kelamin",
-              'laki-laki' => 'laki-laki',
-              'perempuan' => 'perempuan',
-            ], ['class' => 'form-control select2','required'])
-          }}<br>{{
+          }}{{ Form::select('jenis_kelamin', [
+                          "$Edit->jenis_kelamin" => "$Edit->jenis_kelamin",
+                          'laki-laki' => 'laki-laki',
+                          'perempuan' => 'perempuan'
+            ,], null, ['class' => 'form-control select2','required']) }}
+          {{
             Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
             Form::number('no_hp', "$Edit->no_hp",['min'=>'0','placeholder'=> '0877xxxxx','class' => 'form-control','required'])
