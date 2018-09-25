@@ -17,7 +17,7 @@ class KelasController extends Controller
     {
         $data = kelas::join('gurus','gurus.kode_guru','=','kelas.wali_kelas')->orderBy('kelas.id','DESC')->get();
         $dataguru = Guru::all();
-        $selsctGuru = [''=>'pilih guru ---'];
+        $selectGuru = [''=>'pilih guru ---'];
         foreach ($dataguru as $select) {
           $selectGuru[$select->kode_guru] = $select->nama_guru;
         }
@@ -42,6 +42,13 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+
+      // dd($request->wali_kelas);
+      if ($request->wali_kelas == '') {
+        // code...
+        return redirect('kelas')->with(['fatal' => 'wali kelas Tidak boleh kosong']);
+      }else {
+
       $code = date("Ymdhis");
       $count = kelas::count()+1;
 
@@ -54,6 +61,7 @@ class KelasController extends Controller
       $insert->save();
 
       return redirect('kelas')->with(['success' => 'Proses penambahan Berhasil']);
+      }
     }
 
     /**

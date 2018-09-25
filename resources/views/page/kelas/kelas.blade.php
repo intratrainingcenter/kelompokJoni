@@ -11,6 +11,18 @@
         <strong>{{ $message }}</strong>
       </div>
     @endif
+    @if ($message = Session::get('fatal'))
+      <div style="width:300px;float:right" class="alert alert-danger alert-block notif">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+      </div>
+    @endif
+    @if ($message = Session::get('info'))
+      <div style="width:300px;float:right" class="alert alert-info alert-block notif">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+      </div>
+    @endif
 
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -78,9 +90,9 @@
           {{  Form::label('nama_kelas', 'Nama Kelas', ['class' => 'awesome']) }}
           {{  Form::text('nama_kelas', '',['placeholder'=>'MIPA_1','class' => 'form-control','required','autofocus']) }}
           {{  Form::label('wali_kelas', '', ['class' => 'awesome']) }}
-          {{  Form::select('wali_kelas', $selectGuru , null, ['placeholder' => '---unknown----','class' => 'form-control select2','required']) }}
+          {{  Form::select('wali_kelas', $selectGuru , null, ['class' => 'form-control select2','required']) }}
           {{  Form::label('keterangan_kelas', '', ['class' => 'awesome']) }}
-          {{  Form::text('keterangan_kelas', '',['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
+          {{  Form::textarea('keterangan_kelas', '',['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>
@@ -113,14 +125,8 @@
               <option value="{{ $select->kode_guru }}">{{ $select->nama_guru }}</option>
             @endforeach
           </select>
-          {{-- {{  Form::select('wali_kelas', [
-                          "$Editkelas->wali_kelas" => "$Editkelas->wali_kelas",
-                          'supriadi Spd' => 'supriadi Spd',
-                          'jono Spd mpd' => 'suyatemi SpdSpd mpd',
-                          'suyatemi Spd' => 'suyatemi Spd',
-                        ],null, ['class' => 'form-control select2','required']) }} --}}
           {{  Form::label('keterangan_kelas', '', ['class' => 'awesome']) }}
-          {{  Form::text('keterangan_kelas', "$Editkelas->keterangan_kelas",['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
+          {{  Form::textarea('keterangan_kelas', "$Editkelas->keterangan_kelas",['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>

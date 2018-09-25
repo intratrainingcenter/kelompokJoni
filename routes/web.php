@@ -22,8 +22,9 @@ Route::get('/contain', function (){
 // Route::get('/absensi', 'PageSekolah@absensi')->name('absensi');
 Route::get('/mapel', 'PageSekolah@mapel')->name('mapel');
 // Route::get('/kelas', 'PageSekolah@kelas')->name('kelas');
-Route::get('/piket', 'PageSekolah@piket')->name('piket');
+// Route::get('/piket', 'PageSekolah@piket')->name('piket');
 Route::resource('siswa', 'DataSiswaController');
 Route::resource('kelas', 'KelasController');
 Route::resource('absensi', 'AbsensiController');
 Route::resource('guru', 'GuruController');
+Route::resource('picket', 'PiketController');

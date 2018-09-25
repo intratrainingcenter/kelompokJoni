@@ -18,7 +18,6 @@ class CreatePiketsTable extends Migration
             $table->string('kode_piket');
             $table->string('hari');
             $table->string('nis');
-            $table->string('nama_siswa');
             $table->timestamps();
         });
     }

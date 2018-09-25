@@ -17,10 +17,10 @@ class CreateAbsensisTable extends Migration
             $table->increments('id');
             $table->string('kode_absensi');
             $table->string('nis');
-            $table->integer('alpa');
-            $table->integer('ijin');
-            $table->integer('sakit');
-            $table->integer('masuk');
+            $table->integer('alpa')->nullable();
+            $table->integer('ijin')->nullable();
+            $table->integer('sakit')->nullable();
+            $table->integer('masuk')->nullable();
             $table->string('keterangan');
             $table->timestamps();
         });
