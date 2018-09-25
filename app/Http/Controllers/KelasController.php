@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\kelas;
+use App\Guru;
 
 class KelasController extends Controller
 {
@@ -14,8 +15,13 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $data = kelas::orderBy('id','DESC')->get();
-        return view('page/kelas',['data'=>$data]);
+        $data = kelas::join('gurus','gurus.kode_guru','=','kelas.wali_kelas')->orderBy('kelas.id','DESC')->get();
+        $dataguru = Guru::all();
+        $selsctGuru = [''=>'pilih guru ---'];
+        foreach ($dataguru as $select) {
+          $selectGuru[$select->kode_guru] = $select->nama_guru;
+        }
+        return view('page.kelas.kelas',['data'=>$data, 'selectGuru'=>$selectGuru, 'dataguru'=>$dataguru]);
     }
 
     /**
