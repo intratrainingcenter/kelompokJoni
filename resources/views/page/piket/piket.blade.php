@@ -30,49 +30,59 @@
     </ol>
   </section>
   <section class="content">
-    <div class="row">
+    {{-- <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
             <h3 class="box-title"></h3>
-            <div class="box-tools">
-              {{-- <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddPicket" style="float:right;" href="#">Add</a> --}}
-              <a class="btn btn-success" title="add" style="float:right;" href="{{ route('picket.create')}}">Add</a>
-            </div>
-          </div>
+            <div class="box-tools"> --}}
+              {{-- <a class="btn btn-success" title="add" style="float:right;" href="{{ route('picket.create')}}">Add</a> --}}
+            {{-- </div>
+          </div> --}}
+          <section class="content">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Hover Data Table</h3>
+                  </div>
           <!-- /.box-header -->
-          <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
-                <th>#</th>
-                <th>Kode Piket</th>
-                <th>Hari</th>
-                <th>nama siswa</th>
-                <th>Opsi</th>
-              </tr>
-              <tbody>
-                @foreach ($data as $idx => $key)
-                  <tr>
-                    <td>{{$idx +1}}</td>
-                    <td>{{$key->kode_piket}}</td>
-                    <td>{{$key->hari}}</td>
-                    <td>{{$key->nama}}</td>
-                    <td>
-                      <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#Editsiswa{{$key->kode_piket}}" href="#">edit</a>
-                      <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#DeletePicket{{$key->kode_piket}}" href="#">delete</a>
-                    </td>
+          {{-- <div class="box-body table-responsive no-padding"> --}}
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  {{-- <th>Kode Piket</th> --}}
+                  {{-- <th>Hari</th> --}}
+                  <th>kelas</th>
+                  <th>Opsi</th>
                   </tr>
-                @endforeach
-              </tbody>
-              <tr>
-              </tr>
-            </table>
+                </thead>
+                <tbody>
+                  @foreach ($data as $idx => $key)
+                <tr>
+                  <td>{{$idx +1}}</td>
+                  {{-- <td>{{$key->kode_piket}}</td> --}}
+                  {{-- <td>{{$key->hari}}</td> --}}
+                  <td>{{$key->nama_kelas}}</td>
+                  <td>
+                    <a type="button" title="edit" class="btn btn-info" data-toggle="modal" href="{{route('picket.show',$key->kode_kelas)}}">detail piket</a>
+                    {{-- <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#Editsiswa{{$key->kode_piket}}" href="#">edit</a>
+                    <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#DeletePicket{{$key->kode_piket}}" href="#">delete</a> --}}
+                  </td>
+                </tr>
+              @endforeach
+                </tbody>
+              </table>
+            </div>
+            <table class="table table-hover">
           </div>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
       </div>
-    </div>
+    {{-- </div> --}}
   </section>
   <!-- Modal -->
 {{-- ---------add------------ --}}
@@ -90,18 +100,8 @@
         {{
             Form::hidden('kode_piket', '',['type'=>'hidden','placeholder'=>'N2018092101','class' => 'form-control','required'])
           }}{{
-            Form::label('Hari', 'Hari', ['class' => 'awesome'])
-          }}{{ Form::select('hari', [
-            'Senin' => 'Senin',
-            'Selasa' => 'Selasa',
-            'Rabo' => 'Rabo',
-            'Kamis' => 'Kamis',
-            'Jumat' => 'Jumat',
-            'Sabtu' => 'Sabtu'
-            ,], null, ['placeholder' => '---unknown---','class' => 'form-control select2','required']) }}
-          {{
-            Form::label('nis', 'Nama Siswa', ['class' => 'awesome'])
-          }}{{ Form::select('nis', $selectStudent, null, ['class' => 'form-control select2','required']) }}
+            Form::label('kode_kelas', 'kelas', ['class' => 'awesome'])
+          }}{{ Form::select('kode_kelas', $selectClass, null, ['class' => 'form-control select2','required']) }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>
@@ -137,4 +137,27 @@
       </div>
     </div>
   @endforeach
+@endsection
+@section('js')
+
+  <!-- jQuery 3 -->
+  {{-- <script src="{{asset('AdminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script> --}}
+  {{-- <!-- Bootstrap 3.3.7 -->
+  <script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  <!-- DataTables -->
+  <script src="{{asset('AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> --}}
+  <script>
+    // $(function () {
+    //   $('#example1').DataTable()
+    //   $('#example2').DataTable({
+    //     'paging'      : true,
+    //     'lengthChange': false,
+    //     'searching'   : false,
+    //     'ordering'    : true,
+    //     'info'        : true,
+    //     'autoWidth'   : false
+    //   })
+    // })
+  </script>
 @endsection

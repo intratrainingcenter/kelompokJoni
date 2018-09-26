@@ -16,8 +16,9 @@ class CreatePiketsTable extends Migration
         Schema::create('pikets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kode_piket');
-            $table->string('hari');
-            $table->string('nis');
+            $table->string('hari')->nullable();
+            $table->string('kode_kelas');
+            $table->string('nis')->nullable();
             $table->timestamps();
         });
     }

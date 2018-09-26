@@ -103,5 +103,6 @@
      $('.notif').hide('slow')
        }, 3000);
 </script>
+@yield('js')
 </body>
 </html>
