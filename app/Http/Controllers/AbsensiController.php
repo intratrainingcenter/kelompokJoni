@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\absensi;
 use App\datasiswa;
+use App\kelas;
 
 class AbsensiController extends Controller
 {
@@ -15,7 +16,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $data = absensi::join('datasiswas','datasiswas.nis', '=','absensis.nis')->orderBy('absensis.id', 'DESC')->get();
+        $data = kelas::join('gurus','gurus.kode_guru','=','kelas.wali_kelas')->orderBy('kelas.id', 'DESC')->get();
           $datasiswa = datasiswa::all();
           $selectsiswa = [''=>'Pilih Siswa'];
 
@@ -43,6 +44,7 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
+
         $date = date('Ymdhsi');
         $count = absensi::count()+1;
 
@@ -57,7 +59,7 @@ class AbsensiController extends Controller
         $insert->keterangan=$request->keterangan;
         $insert->save();
 
-        return redirect('absensi')->with(['success' => 'Proses Tambah Absensi berhasil']);
+        return redirect()->back()->with(['success' => 'Proses Tambah Absensi berhasil']);
     }
 
     /**
@@ -66,9 +68,16 @@ class AbsensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nis)
     {
-        //
+      $data = absensi::join('datasiswas','datasiswas.nis', '=','absensis.nis')->orderBy('absensis.id', 'DESC')->where('absensis.nis',$nis)->get();
+      $datasiswa = datasiswa::all();
+      $selectsiswa = [''=>'Pilih Siswa'];
+
+      foreach ($datasiswa as $item) {
+        $selectsiswa[$item->nis] = $item->nama;
+      }
+    return view('page.absensi.absensiDetail', ['data'=>$data ,'selectsiswa'=> $selectsiswa, 'datasiswa'=>$datasiswa]);
     }
 
     /**
@@ -77,16 +86,15 @@ class AbsensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($kode_absensi)
+    public function edit($kode_kelas)
     {
-        // $edit = absensi::where('kode_absensi',$kode_absensi)->first();
-        // $datasiswa = datasiswa::all();
-        // $selectsiswa = [''=>'Pilih Siswa'];
-        // foreach ($datasiswa as $item) {
-          // $selectsiswa[$item->nis] = $item->nama;
-        // }
-        // dd($edit);
-        // return view('page.absensi.editabsensi',['edit'=>$edit,'selectsiswa'=>$selectsiswa]);
+      // dd($kode_kelas);
+        // $edit = absensi::join('datasiswas','datasiswas.kode_kelas','=','absensis.kode_kelas')->where('datasiswas.kode_kelas',$kode_kelas)->first();
+        $datasiswa = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')
+                                // ->join('absensis','absensis.nis','=','datasiswas.nis')
+                                ->where('datasiswas.kode_kelas',$kode_kelas)->get();
+
+        return view('page.absensi.absensikelas',['datasiswa'=>$datasiswa]);
     }
 
     /**
@@ -109,7 +117,7 @@ class AbsensiController extends Controller
         $Update->keterangan=$request->keterangan;
         $Update->save();
 
-        return redirect('absensi')->with(['success' => 'Proses Edit Absensi berhasil']);
+        return redirect()->back()->with(['success' => 'Proses Edit Absensi berhasil']);
     }
 
     /**
@@ -124,6 +132,6 @@ class AbsensiController extends Controller
         $delete = absensi::where('kode_absensi',$kode_absensi);
         $delete->delete();
 
-        return redirect('absensi')->with(['success' => 'Proses Delete Absensi berhasil']);
+        return redirect()->back()->with(['success' => 'Proses Delete Absensi berhasil']);
     }
 }

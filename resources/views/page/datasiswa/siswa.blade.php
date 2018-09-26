@@ -11,6 +11,18 @@
         <strong>{{ $message }}</strong>
       </div>
     @endif
+    @if ($message = Session::get('info'))
+      <div style="width:300px;float:right" class="alert alert-info alert-block notif">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+      </div>
+    @endif
+    @if ($message = Session::get('fail'))
+      <div style="width:300px;float:right" class="alert alert-danger alert-block notif">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+      </div>
+    @endif
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">Page Sekolah</a></li>
@@ -37,6 +49,7 @@
                 <th>Jenis Kelamin</th>
                 <th>No Hp</th>
                 <th>Alamat</th>
+                <th>Kelas</th>
                 <th>Opsi</th>
               </tr>
               <tbody>
@@ -48,6 +61,7 @@
                     <td>{{$key->jenis_kelamin}}</td>
                     <td>{{$key->no_hp}}</td>
                     <td>{{$key->alamat}}</td>
+                    <td>{{$key->nama_kelas}}</td>
                     <td>
                       <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#Editsiswa{{$key->nis}}" href="#">edit</a>
                       <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#Hapussiswa{{$key->nis}}" href="#">delete</a>
@@ -93,13 +107,16 @@
                           'perempuan' => 'perempuan'
             ,], null, ['placeholder' => '---unknown---','class' => 'form-control select2','required']) }}
           {{
+            Form::label('kode_kelas', 'kode kelas', ['class' => 'awesome'])
+          }}{{ Form::select('kode_kelas', $selectKelas, null, ['class' => 'form-control select2','required']) }}
+          {{
             Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
             Form::number('no_hp', '',['placeholder'=> '0877xxxxx','min'=>'0','class' => 'form-control','required'])
           }}{{
             Form::label('alamat', 'Alamat', ['class' => 'awesome'])
           }}{{
-            Form::text('alamat', '',['placeholder'=>'Dk.tanjung 01/04 Ds.kedungtuban Kb.blora','class' => 'form-control','required'])
+            Form::textarea('alamat', '',['placeholder'=>'Dk.tanjung 01/04 Ds.kedungtuban Kb.blora','class' => 'form-control','required'])
           }}
         </div>
         <div class="modal-footer">
@@ -140,6 +157,15 @@
                           'laki-laki' => 'laki-laki',
                           'perempuan' => 'perempuan'
             ,], null, ['class' => 'form-control select2','required']) }}
+            {{
+              Form::label('kode_kelas', 'kode kelas', ['class' => 'awesome'])
+            }}
+            <select class="form-control" name="kode_kelas">
+              <option value="{{$Edit->kode_kelas}}">{{ $Edit->nama_kelas }}</option>
+              @foreach ($dataKelas as $key => $kelas)
+                <option value="{{$kelas->kode_kelas}}">{{ $kelas->nama_kelas }}</option>
+              @endforeach
+            </select>
           {{
             Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
@@ -147,7 +173,7 @@
           }}{{
             Form::label('alamat', 'Alamat', ['class' => 'awesome'])
           }}{{
-            Form::text('alamat', "$Edit->alamat",['placeholder'=>'Dk.tanjung 01/04 Ds.kedungtuban Kb.blora','class' => 'form-control','required'])
+            Form::textarea('alamat', "$Edit->alamat",['placeholder'=>'Dk.tanjung 01/04 Ds.kedungtuban Kb.blora','class' => 'form-control','required'])
           }}
         </div>
         <div class="modal-footer">

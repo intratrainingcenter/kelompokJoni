@@ -47,12 +47,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('siswa.index')}}"><i class="fa fa-circle-o"></i> Data siswa </a></li>
+            <li><a href="{{route('guru.index')}}"><i class="fa fa-circle-o"></i> Guru</a></li>
             <li><a href="{{route('kelas.index')}}"><i class="fa fa-circle-o"></i> Kelas</a></li>
-            <li><a href="{{route('piket')}}"><i class="fa fa-circle-o"></i> Piket</a></li>
+            <li><a href="{{route('siswa.index')}}"><i class="fa fa-circle-o"></i> Data siswa </a></li>
+            <li><a href="{{route('picket.index')}}"><i class="fa fa-circle-o"></i> Piket</a></li>
             <li><a href="{{route('mapel')}}"><i class="fa fa-circle-o"></i> Mata pelajaran</a></li>
             <li><a href="{{route('absensi.index')}}"><i class="fa fa-circle-o"></i> Absensi</a></li>
-            <li><a href="{{route('guru.index')}}"><i class="fa fa-circle-o"></i> Guru</a></li>
           </ul>
         </li>
 

@@ -31,7 +31,7 @@
           <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
               <tr>
-                {{-- <th>#</th>
+                <th>#</th>
                 <th>Kode Absensi</th>
                 <th>NIS</th>
                 <th>Alpa</th>
@@ -39,23 +39,8 @@
                 <th>Sakit</th>
                 <th>Masuk</th>
                 <th>Keterangan</th>
-                <th>Opsi</th> --}}
-                <th>#</th>
-                <th>Kode Kelas</th>
-                <th>Nama Kelas</th>
-                <th>Wali Kelas</th>
-                <th>Keterangan Kelas</th>
                 <th>Opsi</th>
               </tr>
-              <tbody>
-                @foreach ($data as $idx => $key)
-                  <tr>
-                    <td>{{$idx +1}}</td>
-                    <td>{{$key->kode_kelas}}</td>
-                    <td>{{$key->nama_kelas}}</td>
-                    <td>{{$key->nama_guru}}</td>
-                    <td>{{$key->keterangan_kelas}}</td>
-              {{-- </tr>
               <tbody>
                 @foreach ($data as $idx => $key)
                   <tr>
@@ -66,11 +51,11 @@
                     <td>{{$key->ijin}}</td>
                     <td>{{$key->sakit}}</td>
                     <td>{{$key->masuk}}</td>
-                    <td>{{$key->keterangan}}</td> --}}
+                    <td>{{$key->keterangan}}</td>
                     <td>
-                      <a type="button" class="btn btn-success" title="edit" href="{{route('absensi.edit',$key->kode_kelas)}}">Absens</a>
-                      {{-- <a type="button" class="btn btn-warning" title="edit" data-toggle="modal" data-target="#EditAbsensi{{ $key->kode_absensi }}" href="#">edit</a>
-                      <a type="button" class="btn btn-danger" title="hapus" data-toggle="modal" data-target="#HapusAbsensi{{$key->kode_absensi}}" href="#">delete</a> --}}
+                      {{-- <a type="button" class="btn btn-success" title="edit" href="{{route('absensi.edit',$key->kode_kelas)}}">Absens</a> --}}
+                      <a type="button" class="btn btn-warning" title="edit" data-toggle="modal" data-target="#EditAbsensi{{ $key->kode_absensi }}" href="#">edit</a>
+                      <a type="button" class="btn btn-danger" title="hapus" data-toggle="modal" data-target="#HapusAbsensi{{$key->kode_absensi}}" href="#">delete</a>
                     </td>
                   </tr>
                 @endforeach
@@ -138,16 +123,33 @@
             @endforeach
           </select>
           {{-- {{  Form::select('nis', $selectsiswa, null, ['class' => 'form-control select2','required','autofocus']) }} --}}
+          @if ($Edit->alpa == 1)
+            {{ Form::checkbox('alpa', '1',true) }}
+          @else
+          {{ Form::checkbox('alpa', '1',false) }}
+        @endif
           {{  Form::label('alpa', 'Alpa', ['class' => 'awesome']) }}
-          {{  Form::number('alpa', $Edit->alpa,['placeholder'=>'MIPA_1','min'=>'0','class' => 'form-control','required']) }}
+          @if ($Edit->ijin == 1)
+            {{ Form::checkbox('ijin', '1',true) }}
+          @else
+          {{ Form::checkbox('ijin', '1',false) }}
+        @endif
           {{  Form::label('ijin', 'Ijin', ['class' => 'awesome']) }}
-          {{  Form::number('ijin', $Edit->ijin,['placeholder'=>'MIPA_1','min'=>'0','class' => 'form-control','required']) }}
+          @if ($Edit->sakit == 1)
+            {{ Form::checkbox('sakit', '1',true) }}
+          @else
+          {{ Form::checkbox('sakit', '1',false) }}
+        @endif
           {{  Form::label('sakit', 'Sakit', ['class' => 'awesome']) }}
-          {{  Form::number('sakit', $Edit->sakit,['placeholder'=> 'kelas ilmu pengetahun alam','min'=>'0','class' => 'form-control','required']) }}
-          {{  Form::label('masuk', 'Masuk', ['class' => 'awesome']) }}
-          {{  Form::number('masuk', $Edit->masuk,['placeholder'=> 'kelas ilmu pengetahun alam','min'=>'0','class' => 'form-control','required']) }}
+          @if ($Edit->masuk == 1)
+            {{ Form::checkbox('masuk', '1',true ) }}
+          @else
+          {{ Form::checkbox('masuk', '1',false ) }}
+        @endif
+
+          {{  Form::label('masuk', 'Masuk', ['class' => 'awesome']) }}<br>
           {{  Form::label('keterangan', 'keterangan', ['class' => 'awesome']) }}
-          {{  Form::text('keterangan', $Edit->keterangan,['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
+          {{  Form::textarea('keterangan', $Edit->keterangan,['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>

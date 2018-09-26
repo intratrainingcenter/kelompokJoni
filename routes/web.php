@@ -27,8 +27,8 @@ Route::resource('siswa', 'DataSiswaController');
 Route::resource('kelas', 'KelasController');
 Route::resource('absensi', 'AbsensiController');
 Route::resource('guru', 'GuruController');
-Route::get('piket', 'PiketController@index')->name('piket');
-Route::post('piket/save', 'PiketController@store')->name('piket.store');
+Route::resource('picket', 'PiketController');
+
 Route::get('mapel', 'MataPelajaranController@index')->name('mapel');
 Route::post('mapel/save', 'MataPelajaranController@store')->name('mapel.store');
 Route::put('mapel/edit/{id}', 'MataPelajaranController@update')->name('mapel.update');
