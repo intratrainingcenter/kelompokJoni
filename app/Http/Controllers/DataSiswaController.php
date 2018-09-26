@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\datasiswa;
+use App\kelas;
+use App\piket;
 
 class DataSiswaController extends Controller
 {
@@ -15,9 +17,26 @@ class DataSiswaController extends Controller
      */
     public function index()
     {
-        $data = datasiswa::orderBy('id','DESC')->get();
+        // $dataClass = kelas::count();
+        // if($dataClass == 0){
+        //   $data = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')->orderBy('datasiswas.id','DESC')->get();
+        //   $dataKelas = kelas::all();
+        //   $selectKelas = [''=>'Pilih Kelas ---'];
+        //   // dd($data);
+        //   foreach ($dataKelas as $key => $select) {
+        //     $selectKelas[$select->kode_kelas] = $select->nama_kelas;
+        //   }
+        //     return view('page/datasiswa/siswa',['data'=>$data,'selectKelas'=>$selectKelas,'dataKelas'=>$dataKelas])->with(['info'=>'kelas belum ada']);
+        // }
+        $data = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')->orderBy('datasiswas.id','DESC')->get();
+        $dataKelas = kelas::all();
+        $selectKelas = [''=>'Pilih Kelas ---'];
         // dd($data);
-        return view('page/datasiswa/siswa',['data'=>$data]);
+        foreach ($dataKelas as $key => $select) {
+          $selectKelas[$select->kode_kelas] = $select->nama_kelas;
+        }
+
+        return view('page/datasiswa/siswa',['data'=>$data,'selectKelas'=>$selectKelas,'dataKelas'=>$dataKelas]);
     }
 
     /**
@@ -38,6 +57,9 @@ class DataSiswaController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->kode_kelas == '') {
+          return redirect('siswa')->with(['fail' => 'kode kelas kosong']);
+        }
         $code = date("Ymdhis");
         $count = datasiswa::count()+1;
 
@@ -47,6 +69,7 @@ class DataSiswaController extends Controller
         $insert->nama=$request->nama;
         $insert->jenis_kelamin=$request->jenis_kelamin;
         $insert->no_hp=$request->no_hp;
+        $insert->kode_kelas=$request->kode_kelas;
         $insert->alamat=$request->alamat;
         $insert->save();
 
@@ -84,13 +107,16 @@ class DataSiswaController extends Controller
      */
     public function update(Request $request, $nis)
     {
-        // dd($request['nis']);
+          if ($request->kode_kelas == '') {
+            return redirect('siswa')->with(['fail' => 'kode kelas kosong']);
+          }
         // $update = datasiswa::where('nis',"=",$request['nis']);
         $updates = datasiswa::where('nis',$request['nis'])->first();
         $updates->nis=$request->nis;
         $updates->nama=$request->nama;
         $updates->jenis_kelamin=$request->jenis_kelamin;
         $updates->no_hp=$request->no_hp;
+        $updates->kode_kelas=$request->kode_kelas;
         $updates->alamat=$request->alamat;
         $updates->save();
 
