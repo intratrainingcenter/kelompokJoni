@@ -36,7 +36,7 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddSiswa" style="float:right;" href="#">Add</a>
+              <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddSiswa" style="float:right;" href="#"></a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -63,8 +63,8 @@
                     <td>{{$key->alamat}}</td>
                     <td>{{$key->nama_kelas}}</td>
                     <td>
-                      <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#Editsiswa{{$key->nis}}" href="#">edit</a>
-                      <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#Hapussiswa{{$key->nis}}" href="#">delete</a>
+                      <a type="button" title="edit" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#Editsiswa{{$key->nis}}" href="#"></a>
+                      <a type="button" title="delete" class="btn btn-danger fa  fa-trash" data-toggle="modal" data-target="#Hapussiswa{{$key->nis}}" href="#"></a>
                     </td>
                   </tr>
                 @endforeach
@@ -108,7 +108,7 @@
             ,], null, ['placeholder' => '---unknown---','class' => 'form-control select2','required']) }}
           {{
             Form::label('kode_kelas', 'kode kelas', ['class' => 'awesome'])
-          }}{{ Form::select('kode_kelas', $selectKelas, null, ['class' => 'form-control select2','required']) }}
+          }}{{ Form::select('kode_kelas', $selectClass, null, ['class' => 'form-control select2','required']) }}
           {{
             Form::label('no_hp', 'No Hp', ['class' => 'awesome'])
           }}{{
@@ -162,7 +162,7 @@
             }}
             <select class="form-control" name="kode_kelas">
               <option value="{{$Edit->kode_kelas}}">{{ $Edit->nama_kelas }}</option>
-              @foreach ($dataKelas as $key => $kelas)
+              @foreach ($dataClass as $key => $kelas)
                 <option value="{{$kelas->kode_kelas}}">{{ $kelas->nama_kelas }}</option>
               @endforeach
             </select>

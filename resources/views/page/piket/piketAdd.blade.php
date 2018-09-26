@@ -36,7 +36,7 @@
           <div class="box-header">
             <h3 class="box-title">Add Picket</h3>
             <div class="box-tools">
-              <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddPicket" style="float:right;" href="#">Add</a>
+              <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddPicket" style="float:right;" href="#"></a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -61,8 +61,8 @@
                     <td>{{$key->nama}}</td>
                     <td>
                       {{-- <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" href="{{route('picket.edit',$key->kode_piket)}}">edit</a> --}}
-                      <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#EditPicket{{$key->kode_piket}}" href="#">edit</a>
-                      <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#DeletePicket{{$key->kode_piket}}" href="#">delete</a>
+                      <a type="button" title="edit" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#EditPicket{{$key->kode_piket}}" href="#"></a>
+                      <a type="button" title="delete" class="btn btn-danger fa fa-trash" data-toggle="modal" data-target="#DeletePicket{{$key->kode_piket}}" href="#"></a>
                     </td>
                   </tr>
                 @endforeach
@@ -71,6 +71,7 @@
               </tr>
             </table>
           </div>
+          <a href="{{ route('picket.index') }}" class="btn btn-danger" title="back">Back</a>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->

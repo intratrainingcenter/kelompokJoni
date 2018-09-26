@@ -16,12 +16,12 @@ class KelasController extends Controller
     public function index()
     {
         $data = kelas::join('gurus','gurus.kode_guru','=','kelas.wali_kelas')->orderBy('kelas.id','DESC')->get();
-        $dataguru = Guru::all();
-        $selectGuru = [''=>'pilih guru ---'];
-        foreach ($dataguru as $select) {
-          $selectGuru[$select->kode_guru] = $select->nama_guru;
+        $dataTeacher = Guru::all();
+        $selectTeacher = [''=>'pilih guru ---'];
+        foreach ($dataTeacher as $select) {
+          $selectTeacher[$select->kode_guru] = $select->nama_guru;
         }
-        return view('page.kelas.kelas',['data'=>$data, 'selectGuru'=>$selectGuru, 'dataguru'=>$dataguru]);
+        return view('page.kelas.kelas',['data'=>$data, 'selectTeacher'=>$selectTeacher, 'dataTeacher'=>$dataTeacher]);
     }
 
     /**

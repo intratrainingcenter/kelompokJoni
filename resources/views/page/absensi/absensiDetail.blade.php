@@ -3,7 +3,7 @@
   <section class="content-header">
     <h1>
       Absensi
-      <small>Wani piro !!!!</small>
+      <small>Data detail Absensi Siswa !!!!</small>
     </h1>
     @if ($message = Session::get('success'))
       <div style="width:300px;float:right" class="alert alert-success alert-block notif">
@@ -54,8 +54,8 @@
                     <td>{{$key->keterangan}}</td>
                     <td>
                       {{-- <a type="button" class="btn btn-success" title="edit" href="{{route('absensi.edit',$key->kode_kelas)}}">Absens</a> --}}
-                      <a type="button" class="btn btn-warning" title="edit" data-toggle="modal" data-target="#EditAbsensi{{ $key->kode_absensi }}" href="#">edit</a>
-                      <a type="button" class="btn btn-danger" title="hapus" data-toggle="modal" data-target="#HapusAbsensi{{$key->kode_absensi}}" href="#">delete</a>
+                      <a type="button" class="btn btn-warning fa fa-pencil" title="edit" data-toggle="modal" data-target="#EditAbsensi{{ $key->kode_absensi }}" href="#"></a>
+                      <a type="button" class="btn btn-danger fa fa-trash" title="hapus" data-toggle="modal" data-target="#HapusAbsensi{{$key->kode_absensi}}" href="#"></a>
                     </td>
                   </tr>
                 @endforeach
@@ -64,6 +64,8 @@
               </tr>
             </table>
           </div>
+          <a href="{{ route('absensi.index') }}" title="Back" class="btn btn-danger">Back</a>
+
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
@@ -81,7 +83,7 @@
         <div class="modal-body col-md-12">
           {{  Form::hidden('kode_absensi', '',['class' => 'form-control','required']) }}
           {{  Form::label('nis', '', ['class' => 'awesome']) }}
-          {{  Form::select('nis', $selectsiswa, null, ['class' => 'form-control select2','required','autofocus']) }}
+          {{  Form::select('nis', $selectStudent, null, ['class' => 'form-control select2','required','autofocus']) }}
           {{  Form::label('alpa', 'Alpa', ['class' => 'awesome']) }}
           {{  Form::number('alpa', '',['placeholder'=>'1','min'=>'0','class' => 'form-control','required','autofocus']) }}
           {{  Form::label('ijin', 'Ijin', ['class' => 'awesome']) }}
@@ -118,11 +120,11 @@
           {{  Form::label('nis', '', ['class' => 'awesome']) }}
           <select class="form-control" name="nis">
             <option value="{{ $Edit->nis }}">{{ $Edit->nama }}</option>
-            @foreach ($datasiswa as $Editselect)
+            @foreach ($dataStudent as $Editselect)
               <option value="{{ $Editselect->nis }}">{{ $Editselect->nama }}</option>
             @endforeach
           </select>
-          {{-- {{  Form::select('nis', $selectsiswa, null, ['class' => 'form-control select2','required','autofocus']) }} --}}
+          {{-- {{  Form::select('nis', $selectStudent, null, ['class' => 'form-control select2','required','autofocus']) }} --}}
           @if ($Edit->alpa == 1)
             {{ Form::checkbox('alpa', '1',true) }}
           @else

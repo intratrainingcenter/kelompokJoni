@@ -3,7 +3,7 @@
   <section class="content-header">
     <h1>
       Absensi
-      <small>Wani piro !!!!</small>
+      <small>Data Absensi siswa !!!!</small>
     </h1>
     @if ($message = Session::get('success'))
       <div style="width:300px;float:right" class="alert alert-success alert-block notif">
@@ -41,7 +41,7 @@
                 <th>Opsi</th>
               </tr>
               <tbody>
-                @foreach ($datasiswa as $idx => $key)
+                @foreach ($dataStudent as $idx => $key)
                   <tr>
                     <td>{{$idx +1}}</td>
                     <td>{{$key->nis}}</td>
@@ -61,13 +61,14 @@
               </tr>
             </table>
           </div>
+          <a href="{{ route('absensi.index') }}" title="Back" class="btn btn-danger">Back</a>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
       </div>
     </div>
   </section>
-  @foreach ($datasiswa as $Edit)
+  @foreach ($dataStudent as $Edit)
     <div id="Absensiswa{{ $Edit->nis }}" class="modal fade" role="dialog">
       <div class="modal-dialog">
         {{Form::open(['route' => 'absensi.store'])}}
@@ -77,6 +78,7 @@
             <h4 class="modal-title">Absensi</h4>
           </div>
           <div class="modal-body col-md-12">
+            <center > <h3>{{$Edit->nama}} </h3></center> <br>
             {{  Form::hidden('kode_absensi', '',['class' => 'form-control','required']) }}
             {{  Form::hidden('nis', $Edit->nis,['class' => 'form-control','required']) }}
             {{ Form::checkbox('alpa', '1') }}

@@ -17,26 +17,15 @@ class DataSiswaController extends Controller
      */
     public function index()
     {
-        // $dataClass = kelas::count();
-        // if($dataClass == 0){
-        //   $data = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')->orderBy('datasiswas.id','DESC')->get();
-        //   $dataKelas = kelas::all();
-        //   $selectKelas = [''=>'Pilih Kelas ---'];
-        //   // dd($data);
-        //   foreach ($dataKelas as $key => $select) {
-        //     $selectKelas[$select->kode_kelas] = $select->nama_kelas;
-        //   }
-        //     return view('page/datasiswa/siswa',['data'=>$data,'selectKelas'=>$selectKelas,'dataKelas'=>$dataKelas])->with(['info'=>'kelas belum ada']);
-        // }
         $data = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')->orderBy('datasiswas.id','DESC')->get();
-        $dataKelas = kelas::all();
-        $selectKelas = [''=>'Pilih Kelas ---'];
+        $dataClass = kelas::all();
+        $selectClass = [''=>'Pilih Kelas ---'];
         // dd($data);
-        foreach ($dataKelas as $key => $select) {
-          $selectKelas[$select->kode_kelas] = $select->nama_kelas;
+        foreach ($dataClass as $key => $select) {
+          $selectClass[$select->kode_kelas] = $select->nama_kelas;
         }
 
-        return view('page/datasiswa/siswa',['data'=>$data,'selectKelas'=>$selectKelas,'dataKelas'=>$dataKelas]);
+        return view('page/datasiswa/siswa',['data'=>$data,'selectClass'=>$selectClass,'dataClass'=>$dataClass]);
     }
 
     /**

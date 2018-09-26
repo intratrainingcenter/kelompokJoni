@@ -18,7 +18,7 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddMataPelajaran" style="float:right;" href="#">Add</a>
+              <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddMataPelajaran" style="float:right;" href="#"></a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -30,6 +30,7 @@
                 <th>Nama Pelajaran</th>
                 <th>Hari</th>
                 <th>Jam</th>
+                <th>Guru</th>
                 <th>Opsi</th>
               </tr>
               <tbody>
@@ -40,9 +41,10 @@
                 <td>{{$key->nama_pelajaran}}</td>
                 <td>{{$key->hari}}</td>
                 <td>{{$key->jam}}</td>
-                <td> 
-                     <a type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditMataPelajaran{{$key->kode_mata_pelajaran}}" href="#">Edit</a>
-                     <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#HapusMataPelajaran{{$key->kode_mata_pelajaran}}">Delete</a>
+                <td>{{$key->nama_guru}}</td>
+                <td>
+                     <a type="button" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#EditMataPelajaran{{$key->kode_mata_pelajaran}}" href="#"></a>
+                     <a type="button" class="btn btn-danger fa  fa-trash" data-toggle="modal" data-target="#HapusMataPelajaran{{$key->kode_mata_pelajaran}}"></a>
                      </td>
               </tr>
             @endforeach
@@ -77,16 +79,21 @@
             Form::text('nama_pelajaran', '',['placeholder'=> 'Nama Pelajaran','class' => 'form-control','required','autofocus'])
           }}{{
             Form::label('hari', 'Hari', ['class' => 'awesome'])
-          }}{{
-            Form::text('hari', '',['placeholder'=> 'Hari','class' => 'form-control','required','autofocus'])
-          }}{{
+          }}{{ Form::select('hari', [
+            'Senin' => 'Senin',
+            'Selasa' => 'Selasa',
+            'Rabu' => 'Rabu',
+            'Kamis' => 'Kamis',
+            'Jumat' => 'Jumat',
+            'Sabtu' => 'Sabtu'
+            ,], null, ['placeholder' => '---unknown---','class' => 'form-control select2','required']) }}{{
             Form::label('jam', 'Jam Pelajaran', ['class' => 'awesome'])
           }}{{
             Form::text('jam', '',['placeholder'=> 'Jam Pelajaran', 'class' => 'form-control','required','autofocus'])
           }}{{
             Form::label('kode_guru', 'Kode Guru', ['class' => 'awesome'])
           }}{{
-           Form::select('kode_guru', $selectGuru, '', ['class' => 'form-control select2','required']) 
+           Form::select('kode_guru', $selectTeacher, '', ['class' => 'form-control select2','required'])
            }}
         </div>
         <div class="modal-footer">
@@ -120,13 +127,26 @@
               Form::text('nama_pelajaran', $Edit->nama_pelajaran,['placeholder'=> 'Nama Pelajaran','class' => 'form-control','required'])
             }}{{
               Form::label('hari', 'hari', ['class' => 'awesome'])
-            }}{{
-              Form::text('hari', $Edit->hari,['placeholder'=> 'Hari','class' => 'form-control','required'])
-            }}{{
+            }}{{ Form::select('hari', [
+              $Edit->hari => $Edit->hari,
+              'Senin' => 'Senin',
+              'Selasa' => 'Selasa',
+              'Rabu' => 'Rabu',
+              'Kamis' => 'Kamis',
+              'Jumat' => 'Jumat',
+              'Sabtu' => 'Sabtu'
+              ,], null, ['class' => 'form-control select2','required']) }}
+              {{
               Form::label('jam', 'jam', ['class' => 'awesome'])
             }}{{
               Form::text('jam', $Edit->jam,['placeholder'=> 'Jam Pelajaran','class' => 'form-control','required'])
-            }}
+            }}{{ form::label('guru', 'Guru',['class'=>'awesome']) }}
+            <select class="form-control" name="kode_guru">
+              <option value="{{$Edit->kode_guru}}">{{ $Edit->nama_guru }}</option>
+              @foreach ($dataTeacher as $teacher )
+                <option value="{{ $teacher->kode_guru}}">{{  $teacher->nama_guru }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>

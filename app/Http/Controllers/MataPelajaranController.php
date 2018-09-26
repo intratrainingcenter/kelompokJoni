@@ -15,13 +15,14 @@ class MataPelajaranController extends Controller
      */
     public function index()
     {
-        $data = mataplajaran::all();
-        $dataGuru = Guru::all();
-        $selectGuru = [''=>'Pilih Guru Pengajar'];
-        foreach ($dataGuru as $key => $pilihguru) {
-             $selectGuru[$pilihguru->kode_guru]=$pilihguru->nama_guru;
+        $data = mataplajaran::join('gurus','gurus.kode_guru','=','mataplajarans.kode_guru')->orderBy('mataplajarans.id','DESC')->get();
+        // dd($data);
+        $dataTeacher = Guru::all();
+        $selectTeacher = [''=>'Pilih Guru Pengajar'];
+        foreach ($dataTeacher as $key => $pilihguru) {
+             $selectTeacher[$pilihguru->kode_guru]=$pilihguru->nama_guru;
             }
-            return view('page.mapel.mapel',['data'=> $data,'selectGuru'=>$selectGuru]);
+            return view('page.mapel.mapel',['dataTeacher'=>$dataTeacher,'data'=> $data,'selectTeacher'=>$selectTeacher]);
     }
 
     /**
@@ -52,7 +53,7 @@ class MataPelajaranController extends Controller
         $insert->nama_pelajaran=$request->nama_pelajaran;
         $insert->hari=$request->hari;
         $insert->kode_guru = $request->kode_guru;
-        $insert->jam=$request->jam;                                                                          
+        $insert->jam=$request->jam;
         $insert->save();
 
         return redirect('mapel')->with(['success'=> 'Berhasil Menambahkan Mata Pelajaran']);
@@ -108,7 +109,7 @@ class MataPelajaranController extends Controller
      */
     public function destroy($kode_mata_pelajaran)
     {
-    
+
         $Delete = mataplajaran::where('kode_mata_pelajaran',$kode_mata_pelajaran)->first();
         $Delete->delete();
 

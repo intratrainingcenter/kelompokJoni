@@ -37,7 +37,7 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddKelas" style="float:right;" href="#">Add</a>
+              <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddKelas" style="float:right;" href="#"></a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -60,8 +60,8 @@
                     <td>{{$key->nama_guru}}</td>
                     <td>{{$key->keterangan_kelas}}</td>
                     <td>
-                      <a type="button" class="btn btn-warning" title="edit" data-toggle="modal" data-target="#EditKelas{{$key->kode_kelas}}" href="#">edit</a>
-                      <a type="button" class="btn btn-danger" title="hapus" data-toggle="modal" data-target="#HapusKelas{{$key->kode_kelas}}" href="#">delete</a>
+                      <a type="button" class="btn btn-warning fa fa-pencil" title="edit" data-toggle="modal" data-target="#EditKelas{{$key->kode_kelas}}" href="#"></a>
+                      <a type="button" class="btn btn-danger fa  fa-trash" title="hapus" data-toggle="modal" data-target="#HapusKelas{{$key->kode_kelas}}" href="#"></a>
                     </td>
                   </tr>
                 @endforeach
@@ -90,7 +90,7 @@
           {{  Form::label('nama_kelas', 'Nama Kelas', ['class' => 'awesome']) }}
           {{  Form::text('nama_kelas', '',['placeholder'=>'MIPA_1','class' => 'form-control','required','autofocus']) }}
           {{  Form::label('wali_kelas', '', ['class' => 'awesome']) }}
-          {{  Form::select('wali_kelas', $selectGuru , null, ['class' => 'form-control select2','required']) }}
+          {{  Form::select('wali_kelas', $selectTeacher , null, ['class' => 'form-control select2','required']) }}
           {{  Form::label('keterangan_kelas', '', ['class' => 'awesome']) }}
           {{  Form::textarea('keterangan_kelas', '',['placeholder'=> 'kelas ilmu pengetahun alam','class' => 'form-control','required']) }}
           </div>
@@ -121,7 +121,7 @@
           {{  Form::label('wali_kelas', '', ['class' => 'awesome']) }}
           <select class="form-control" name="wali_kelas">
             <option value="{{ $Editkelas->kode_guru }}">{{ $Editkelas->nama_guru }}</option>
-            @foreach ($dataguru as $select)
+            @foreach ($dataTeacher as $select)
               <option value="{{ $select->kode_guru }}">{{ $select->nama_guru }}</option>
             @endforeach
           </select>

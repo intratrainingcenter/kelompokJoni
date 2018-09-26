@@ -17,13 +17,7 @@ class AbsensiController extends Controller
     public function index()
     {
         $data = kelas::join('gurus','gurus.kode_guru','=','kelas.wali_kelas')->orderBy('kelas.id', 'DESC')->get();
-          $datasiswa = datasiswa::all();
-          $selectsiswa = [''=>'Pilih Siswa'];
-
-          foreach ($datasiswa as $item) {
-            $selectsiswa[$item->nis] = $item->nama;
-          }
-        return view('page.absensi.absensi', ['data'=>$data ,'selectsiswa'=> $selectsiswa, 'datasiswa'=>$datasiswa]);
+        return view('page.absensi.absensi', ['data'=>$data ]);
     }
 
     /**
@@ -71,13 +65,13 @@ class AbsensiController extends Controller
     public function show($nis)
     {
       $data = absensi::join('datasiswas','datasiswas.nis', '=','absensis.nis')->orderBy('absensis.id', 'DESC')->where('absensis.nis',$nis)->get();
-      $datasiswa = datasiswa::all();
-      $selectsiswa = [''=>'Pilih Siswa'];
-
-      foreach ($datasiswa as $item) {
-        $selectsiswa[$item->nis] = $item->nama;
+      $dataStudent = datasiswa::all();
+      $selectStudent = [''=>'Pilih Siswa'];
+      $code = $nis;
+      foreach ($dataStudent as $item) {
+        $selectStudent[$item->nis] = $item->nama;
       }
-    return view('page.absensi.absensiDetail', ['data'=>$data ,'selectsiswa'=> $selectsiswa, 'datasiswa'=>$datasiswa]);
+    return view('page.absensi.absensiDetail', ['code'=>$code,'data'=>$data ,'selectStudent'=> $selectStudent, 'dataStudent'=>$dataStudent]);
     }
 
     /**
@@ -88,13 +82,12 @@ class AbsensiController extends Controller
      */
     public function edit($kode_kelas)
     {
-      // dd($kode_kelas);
         // $edit = absensi::join('datasiswas','datasiswas.kode_kelas','=','absensis.kode_kelas')->where('datasiswas.kode_kelas',$kode_kelas)->first();
-        $datasiswa = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')
+        $dataStudent = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')
                                 // ->join('absensis','absensis.nis','=','datasiswas.nis')
                                 ->where('datasiswas.kode_kelas',$kode_kelas)->get();
 
-        return view('page.absensi.absensikelas',['datasiswa'=>$datasiswa]);
+        return view('page.absensi.absensikelas',['dataStudent'=>$dataStudent]);
     }
 
     /**

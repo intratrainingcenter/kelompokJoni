@@ -24,7 +24,7 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddGuru" style="float:right;" href="#">Add</a>
+              <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddGuru" style="float:right;" href="#"></a>
             </div>
           </div>
           <!-- /.box-header -->
@@ -45,8 +45,8 @@
                     <td>{{$key->nama_guru}}</td>
                     <td>{{$key->no_tlf}}</td>
                     <td>
-                      <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" data-target="#EditGuru{{$key->kode_guru}}" href="#">edit</a>
-                      <a type="button" title="delete" class="btn btn-danger" data-toggle="modal" data-target="#HapusGuru{{$key->kode_guru}}" href="#">delete</a>
+                      <a type="button" title="edit" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#EditGuru{{$key->kode_guru}}" href="#"></a>
+                      <a type="button" title="delete" class="btn btn-danger fa  fa-trash" data-toggle="modal" data-target="#HapusGuru{{$key->kode_guru}}" href="#"></a>
                     </td>
                   </tr>
                 @endforeach
