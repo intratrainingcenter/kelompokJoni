@@ -35,7 +35,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="/"><i class="fa fa-circle-o"></i> Dashboard </a></li>
+            <li class="active"><a href="Dhasboard"><i class="fa fa-circle-o"></i> Dashboard </a></li>
           </ul>
         </li>
         <li class="treeview">
