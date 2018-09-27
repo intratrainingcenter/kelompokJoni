@@ -39,10 +39,9 @@
               <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddPicket" style="float:right;" href="#"></a>
             </div>
           </div>
-          <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
+              <table id="myTable" class="table table-bordered table-striped">
+              <thead>
                 <th>#</th>
                 <th>Kode Piket</th>
                 <th>Hari</th>
@@ -50,6 +49,7 @@
                 <th>nama</th>
                 <th>Opsi</th>
               </tr>
+            </thead>
               <tbody>
                 @foreach ($data as $idx => $key)
 

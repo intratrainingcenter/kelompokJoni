@@ -40,8 +40,10 @@
             </div>
           </div>
           <!-- /.box-header -->
+
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
+              <table id="myTable" class="table table-bordered table-striped">
+              <thead>
               <tr>
                 <th>#</th>
                 <th>NIS</th>
@@ -52,6 +54,8 @@
                 <th>Kelas</th>
                 <th>Opsi</th>
               </tr>
+
+            </thead>
               <tbody>
                 @foreach ($data as $idx => $key)
                   <tr>

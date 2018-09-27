@@ -40,10 +40,10 @@
               <a class="btn btn-success fa fa-plus" title="add" data-toggle="modal" data-target="#AddKelas" style="float:right;" href="#"></a>
             </div>
           </div>
-          <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
+              <table id="myTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
                 <th>#</th>
                 <th>Kode Kelas</th>
                 <th>Nama Kelas</th>
@@ -51,6 +51,8 @@
                 <th>Keterangan Kelas</th>
                 <th>Opsi</th>
               </tr>
+
+            </thead>
               <tbody>
                 @foreach ($data as $idx => $key)
                   <tr>

@@ -24,23 +24,23 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              {{-- <a class="btn btn-success" title="add" data-toggle="modal" data-target="#AddAbsensi" style="float:right;" href="#">Add</a> --}}
             </div>
           </div>
-          <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
-                <th>#</th>
-                <th>Kode Absensi</th>
-                <th>NIS</th>
-                <th>Alpa</th>
-                <th>Ijin</th>
-                <th>Sakit</th>
-                <th>Masuk</th>
-                <th>Keterangan</th>
-                <th>Opsi</th>
-              </tr>
+            <table id="myTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Kode Absensi</th>
+                  <th>NIS</th>
+                  <th>Alpa</th>
+                  <th>Ijin</th>
+                  <th>Sakit</th>
+                  <th>Masuk</th>
+                  <th>Keterangan</th>
+                  <th>Opsi</th>
+                </tr>
+              </thead>
               <tbody>
                 @foreach ($data as $idx => $key)
                   <tr>
@@ -60,17 +60,12 @@
                   </tr>
                 @endforeach
               </tbody>
-              <tr>
-              </tr>
             </table>
-          </div>
-          <a href="{{ route('absensi.index') }}" title="Back" class="btn btn-danger">Back</a>
-
-          <!-- /.box-body -->
         </div>
-        <!-- /.box -->
-      </div>
-    </div>
+          <a href="{{ route('absensi.index') }}" title="Back" class="btn btn-danger">Back</a>
+        </div>
+        </div>
+        </div>
   </section>
   <div id="AddAbsensi" class="modal fade" role="dialog">
     <div class="modal-dialog">

@@ -29,17 +29,19 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
-                <th>#</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th>Jenis Kelamin</th>
-                <th>No Hp</th>
-                <th>Alamat</th>
-                <th>Kelas</th>
-                <th>Opsi</th>
-              </tr>
+              <table id="myTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>NIS</th>
+                  <th>Nama</th>
+                  <th>Jenis Kelamin</th>
+                  <th>No Hp</th>
+                  <th>Alamat</th>
+                  <th>Kelas</th>
+                  <th>Opsi</th>
+                </tr>
+              </thead>
               <tbody>
                 @foreach ($dataStudent as $idx => $key)
                   <tr>

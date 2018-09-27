@@ -9,16 +9,16 @@
 // // Route::resource('risource', 'ControllerResource')->middleware('Goto');
 // Route::resource('risource', 'ControllerResource');
 
-Route::get('/', function (){
-  return view('backend/contents');
-});
+// Route::get('/', function (){
+//   return view('backend/contents');
+// });
 Route::get('/header', function (){
-  return view('backend/header');
+  return view('backend/data1');
 });
 Route::get('/contain', function (){
   return view('backend/menu');
 });
-// Route::get('/siswa', 'PageSekolah@datasiswa')->name('siswa');
+Route::get('/', 'Controllerbiasa@index')->name('Dhasboard');
 // Route::get('/absensi', 'PageSekolah@absensi')->name('absensi');
 // Route::get('/mapel', 'PageSekolah@mapel')->name('mapel');
 // Route::get('/kelas', 'PageSekolah@kelas')->name('kelas');

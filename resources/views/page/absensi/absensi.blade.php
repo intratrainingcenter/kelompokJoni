@@ -27,15 +27,17 @@
             </div>
           </div>
           <div class="box-body table-responsive no-padding">
-            <table class="table table-hover">
-              <tr>
-                <th>#</th>
-                <th>Kode Kelas</th>
-                <th>Nama Kelas</th>
-                <th>Wali Kelas</th>
-                <th>Keterangan Kelas</th>
-                <th>Opsi</th>
-              </tr>
+              <table id="myTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Kode Kelas</th>
+                  <th>Nama Kelas</th>
+                  <th>Wali Kelas</th>
+                  <th>Keterangan Kelas</th>
+                  <th>Opsi</th>
+                </tr>
+              </thead>
               <tbody>
                 @foreach ($data as $idx => $key)
                   <tr>
@@ -50,12 +52,10 @@
                   </tr>
                 @endforeach
               </tbody>
-              <tr>
-              </tr>
             </table>
-          </div>
         </div>
       </div>
     </div>
+  </div>
   </section>
 @endsection

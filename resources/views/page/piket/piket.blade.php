@@ -36,13 +36,10 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              {{-- <a class="btn btn-success" title="add" style="float:right;" href="{{ route('picket.create')}}">Add</a> --}}
             </div>
           </div>
-          <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
-            {{-- <div class="box-body"> --}}
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="myTable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
@@ -66,12 +63,8 @@
               @endforeach
                 </tbody>
               </table>
-            {{-- </div> --}}
-            {{-- <table class="table table-hover"> --}}
           </div>
-          <!-- /.box-body -->
         </div>
-        <!-- /.box -->
       </div>
     </div>
   </section>
@@ -128,27 +121,4 @@
       </div>
     </div>
   @endforeach
-@endsection
-@section('js')
-
-  <!-- jQuery 3 -->
-  {{-- <script src="{{asset('AdminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script> --}}
-  {{-- <!-- Bootstrap 3.3.7 -->
-  <script src="{{asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-  <!-- DataTables -->
-  <script src="{{asset('AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> --}}
-  <script>
-    // $(function () {
-    //   $('#example1').DataTable()
-    //   $('#example2').DataTable({
-    //     'paging'      : true,
-    //     'lengthChange': false,
-    //     'searching'   : false,
-    //     'ordering'    : true,
-    //     'info'        : true,
-    //     'autoWidth'   : false
-    //   })
-    // })
-  </script>
 @endsection
