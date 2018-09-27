@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageSekolah extends Controller
 {
     public function datasiswa()
     {
+      // $data = DB::table('datasiswas')->get();
+      // dd($data);
       return view('/page/siswa');
     }
     public function piket()

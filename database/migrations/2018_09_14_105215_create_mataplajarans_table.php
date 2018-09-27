@@ -17,7 +17,9 @@ class CreateMataplajaransTable extends Migration
             $table->increments('id');
             $table->string('kode_mata_pelajaran');
             $table->string('nama_pelajaran');
-            $table->string('kode_pengajar');
+            $table->string('hari');
+            $table->string('kode_guru');
+            $table->string('jam');
             $table->timestamps();
         });
     }
