@@ -18,7 +18,7 @@ Route::get('/header', function (){
 Route::get('/contain', function (){
   return view('backend/menu');
 });
-Route::get('/', 'Controllerbiasa@index')->name('Dhasboard');
+Route::get('/Dhasboard', 'Controllerbiasa@index')->name('Dhasboard');
 // Route::get('/absensi', 'PageSekolah@absensi')->name('absensi');
 // Route::get('/mapel', 'PageSekolah@mapel')->name('mapel');
 // Route::get('/kelas', 'PageSekolah@kelas')->name('kelas');
