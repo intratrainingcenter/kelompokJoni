@@ -10,7 +10,7 @@
 // Route::resource('risource', 'ControllerResource');
 
 // Route::get('/', function (){
-//   return view('backend/contents');
+ // return view('backend/contents');
 // });
 Route::get('/header', function (){
   return view('backend/data1');
@@ -33,3 +33,5 @@ Route::get('mapel', 'MataPelajaranController@index')->name('mapel');
 Route::post('mapel/save', 'MataPelajaranController@store')->name('mapel.store');
 Route::put('mapel/edit/{id}', 'MataPelajaranController@update')->name('mapel.update');
 Route::delete('mapel/delete/{id}', 'MataPelajaranController@destroy')->name('mapel.destroy');
+Route::get('/', function (){
+  return view('frontend/index');});
