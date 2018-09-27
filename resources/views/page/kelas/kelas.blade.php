@@ -101,7 +101,6 @@
           <button type="submit" class="btn btn-success" title="submit" >submit</button>
         </div>
       </div>
-    {{-- </form> --}}
     {{ Form::close() }}
     </div>
   </div>
@@ -135,8 +134,7 @@
           <button type="submit" class="btn btn-success" title="update" >Update</button>
         </div>
       </div>
-    {{-- </form> --}}
-    {{ Form::close() }}
+    {!! Form::close() !!}
     </div>
   </div>
 @endforeach

@@ -99,7 +99,6 @@ class DataSiswaController extends Controller
           if ($request->kode_kelas == '') {
             return redirect('siswa')->with(['fail' => 'kode kelas kosong']);
           }
-        // $update = datasiswa::where('nis',"=",$request['nis']);
         $updates = datasiswa::where('nis',$request['nis'])->first();
         $updates->nis=$request->nis;
         $updates->nama=$request->nama;

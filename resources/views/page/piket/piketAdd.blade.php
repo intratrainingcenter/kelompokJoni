@@ -45,8 +45,8 @@
                 <th>#</th>
                 <th>Kode Piket</th>
                 <th>Hari</th>
-                <th>kelas</th>
-                <th>nama</th>
+                <th>Kelas</th>
+                <th>Nama Siswa</th>
                 <th>Opsi</th>
               </tr>
             </thead>
@@ -60,7 +60,6 @@
                     <td>{{$key->nama_kelas}}</td>
                     <td>{{$key->nama}}</td>
                     <td>
-                      {{-- <a type="button" title="edit" class="btn btn-warning" data-toggle="modal" href="{{route('picket.edit',$key->kode_piket)}}">edit</a> --}}
                       <a type="button" title="edit" class="btn btn-warning fa fa-pencil" data-toggle="modal" data-target="#EditPicket{{$key->kode_piket}}" href="#"></a>
                       <a type="button" title="delete" class="btn btn-danger fa fa-trash" data-toggle="modal" data-target="#DeletePicket{{$key->kode_piket}}" href="#"></a>
                     </td>
@@ -115,7 +114,6 @@
           <button type="submit" class="btn btn-success" title="submit" >Submit</button>
         </div>
       </div>
-    {{-- </form> --}}
     {{ Form::close() }}
     </div>
   </div>
@@ -156,7 +154,6 @@
           <button type="submit" class="btn btn-success" title="submit" >Submit</button>
         </div>
       </div>
-    {{-- </form> --}}
     {!! Form::close() !!}
     </div>
   </div>
@@ -175,7 +172,6 @@
             @method('DELETE')
             <center><h3>Apakah Anda Yakin menghapus ???</h3></center>
             <center><b><h2>" {{$delete->hari}} "</h2></b></center>
-          {{-- <hr> --}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>

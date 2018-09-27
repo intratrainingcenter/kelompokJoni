@@ -32,7 +32,7 @@
                 <tr>
                   <th>#</th>
                   <th>Kode Absensi</th>
-                  <th>NIS</th>
+                  <th>Nama Siswa</th>
                   <th>Alpa</th>
                   <th>Ijin</th>
                   <th>Sakit</th>
@@ -53,7 +53,6 @@
                     <td>{{$key->masuk}}</td>
                     <td>{{$key->keterangan}}</td>
                     <td>
-                      {{-- <a type="button" class="btn btn-success" title="edit" href="{{route('absensi.edit',$key->kode_kelas)}}">Absens</a> --}}
                       <a type="button" class="btn btn-warning fa fa-pencil" title="edit" data-toggle="modal" data-target="#EditAbsensi{{ $key->kode_absensi }}" href="#"></a>
                       <a type="button" class="btn btn-danger fa fa-trash" title="hapus" data-toggle="modal" data-target="#HapusAbsensi{{$key->kode_absensi}}" href="#"></a>
                     </td>
@@ -112,14 +111,8 @@
           @csrf
           @method('PUT')
           {{  Form::hidden('kode_absensi', $Edit->kode_absensi,['class' => 'form-control','required']) }}
-          {{  Form::label('nis', '', ['class' => 'awesome']) }}
-          <select class="form-control" name="nis">
-            <option value="{{ $Edit->nis }}">{{ $Edit->nama }}</option>
-            @foreach ($dataStudent as $Editselect)
-              <option value="{{ $Editselect->nis }}">{{ $Editselect->nama }}</option>
-            @endforeach
-          </select>
-          {{-- {{  Form::select('nis', $selectStudent, null, ['class' => 'form-control select2','required','autofocus']) }} --}}
+          {{  Form::hidden('nis', $Edit->nis,['class' => 'form-control','required']) }}
+          <center>{{  Form::label('nis', $Edit->nama, ['class' => 'awesome']) }}</center>
           @if ($Edit->alpa == 1)
             {{ Form::checkbox('alpa', '1',true) }}
           @else

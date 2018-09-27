@@ -43,7 +43,6 @@ class KelasController extends Controller
     public function store(Request $request)
     {
 
-      // dd($request->wali_kelas);
       if ($request->wali_kelas == '') {
         // code...
         return redirect('kelas')->with(['fatal' => 'wali kelas Tidak boleh kosong']);

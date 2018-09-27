@@ -102,7 +102,6 @@
           <button type="submit" class="btn btn-success" title="submit">Submit</button>
         </div>
       </div>
-    {{-- </form> --}}
     {{ Form::close() }}
     </div>
   </div>
@@ -154,8 +153,7 @@
             <button type="submit" class="btn btn-success" title="update">Edit</button>
           </div>
         </div>
-        {{-- </form> --}}
-    {{ Form::close() }}
+    {!! Form::close() !!}
         </div>
     </div>
     @endforeach
@@ -173,7 +171,6 @@
             @method('DELETE')
             <center><h3>Apakah Anda Yakin menghapus ???</h3></center>
             <center><b><h2>" {{$delete->nama_pelajaran}} "</h2></b></center>
-          {{-- <hr> --}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>

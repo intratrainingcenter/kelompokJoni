@@ -92,7 +92,6 @@
           <button type="submit" class="btn btn-success" title="submit" >Submit</button>
         </div>
       </div>
-    {{-- </form> --}}
     {{ Form::close() }}
     </div>
   </div>

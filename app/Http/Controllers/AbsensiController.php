@@ -82,10 +82,9 @@ class AbsensiController extends Controller
      */
     public function edit($kode_kelas)
     {
-        // $edit = absensi::join('datasiswas','datasiswas.kode_kelas','=','absensis.kode_kelas')->where('datasiswas.kode_kelas',$kode_kelas)->first();
         $dataStudent = datasiswa::join('kelas','kelas.kode_kelas','=','datasiswas.kode_kelas')
-                                // ->join('absensis','absensis.nis','=','datasiswas.nis')
                                 ->where('datasiswas.kode_kelas',$kode_kelas)->get();
+
 
         return view('page.absensi.absensikelas',['dataStudent'=>$dataStudent]);
     }

@@ -24,7 +24,6 @@
           <div class="box-header">
             <h3 class="box-title"></h3>
             <div class="box-tools">
-              {{-- <a class="btn btn-info" title="Info Absensi" style="float:right;" href="#">Info Absensi</a> --}}
             </div>
           </div>
           <!-- /.box-header -->
@@ -34,7 +33,7 @@
                 <tr>
                   <th>#</th>
                   <th>NIS</th>
-                  <th>Nama</th>
+                  <th>Nama Siswa</th>
                   <th>Jenis Kelamin</th>
                   <th>No Hp</th>
                   <th>Alamat</th>

@@ -43,8 +43,6 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  {{-- <th>Kode Piket</th> --}}
-                  {{-- <th>Hari</th> --}}
                   <th>kelas</th>
                   <th>Opsi</th>
                   </tr>
@@ -53,8 +51,6 @@
                   @foreach ($data as $idx => $key)
                 <tr>
                   <td>{{$idx +1}}</td>
-                  {{-- <td>{{$key->kode_piket}}</td> --}}
-                  {{-- <td>{{$key->hari}}</td> --}}
                   <td>{{$key->nama_kelas}}</td>
                   <td>
                     <a type="button" title="edit" class="btn btn-info" data-toggle="modal" href="{{route('picket.show',$key->kode_kelas)}}">detail piket</a>
@@ -92,7 +88,6 @@
           <button type="submit" class="btn btn-success" title="submit" >Submit</button>
         </div>
       </div>
-    {{-- </form> --}}
     {{ Form::close() }}
     </div>
   </div>
@@ -110,7 +105,6 @@
             @method('DELETE')
             <center><h3>Apakah Anda Yakin menghapus ???</h3></center>
             <center><b><h2>" {{$delete->hari}} "</h2></b></center>
-          {{-- <hr> --}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" title="close" data-dismiss="modal">Close</button>
